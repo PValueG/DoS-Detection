@@ -3,29 +3,25 @@ import socket
 import struct
 
 def dosDetect():
-    # Open up the socket libraries to capture packets
+    # This will open up the scoket libaries to access the packets
     s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, 8)
 
-    ipArray = []  # An empty array for the IPs
+    ipArray = []  #these two lines cretae arrays which can store the ip addresses that are hitting the network
     uniqueArray = []
-    # The following line of code will open a text file, piping
-    # details of DDoS attack in append mode.
-
-    file_txt = open("attack_DoS.txt", 'w')  # Begin a log text file
-    t1 = str(datetime.now())  # Grab the current time for log purposes
+    
+#the next four lines create a text file to track the ips that are hitting the network via the above arrays, wit
+    file_txt = open("attack_DoS.txt", 'w')  
+    t1 = str(datetime.now())
     file_txt.writelines(t1)
     file_txt.writelines("\n")
 
-    # if a particular IP is hitting for more than 15 times then it is an attack.
-    countIP = 0
+
+    countIP = 0 #this line counts the ips in a global variable
     while True:
         pkt = s.recvfrom(2048)  # This port can be used from machine to machine
         ipheader = pkt[0][14:34]
         ip_hdr = struct.unpack("!8sB3s4s4s", ipheader)
         IP = socket.inet_ntoa(ip_hdr[3])
-        '''inet_ntoa(packed_ip) -> ip_address_string
-                Convert an IP address from 32-bit packed
-                binary format to string format'''
         ipArray.append(IP)
         if IP not in uniqueArray:
             uniqueArray.append(IP)
