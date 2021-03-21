@@ -12,11 +12,11 @@ def runSDoS():  # Subprogram 1. Fires dosAttack.py to emulate a sing IP Spoof
 def runSocketGrab():  # Subprogram 3. Fires DDoS_attack.py to emulate a DDoS Random IP Spoof
     rundosDetect
 
-logo = PhotoImage(file='image.png')
+
 Label(window, text=" Dos tool ",
       pady=10, font=('Arial', 20, 'bold')).pack()
 window.title("DOS tool")
-Label(window, image=logo).pack()
+
 Label(window, text="   choose option", bd=4, pady=10, fg='#00ff66',
       font=('Arial', 14, 'bold')).pack()
 Button(window, text="  Begin Single IP DoS  ", bd=4, command=runSDoS).pack()
