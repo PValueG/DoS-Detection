@@ -3,7 +3,7 @@ import socket
 import struct
 
 def dosDetect():
-    # This will open up the scoket libaries to access the packets
+    # This will open up the socket libaries to access the packets
     s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, 8)
 
     ipArray = []  #these two lines cretae arrays which can store the ip addresses that are hitting the network
