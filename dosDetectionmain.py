@@ -18,30 +18,30 @@ def dosDetect():
 
     countIP = 0 #this line counts the ips in a global variable
     while True:
-        pkt = s.recvfrom(2048)  # This port can be used from machine to machine
+        pkt = s.recvfrom(2048)  # This is the standard port that networks and computers use
         ipheader = pkt[0][14:34]
-        ip_hdr = struct.unpack("!8sB3s4s4s", ipheader)
+        ip_hdr = struct.unpack("!8sB3s4s4s", ipheader) #converts ip address from binary to string 
         IP = socket.inet_ntoa(ip_hdr[3])
         ipArray.append(IP)
-        if IP not in uniqueArray:
+        if IP not in uniqueArray: #checks whether the ip has been tracked before
             uniqueArray.append(IP)
-            countIP = countIP + 1
+            countIP = countIP + 1 #counts certain ips, if one of them is hit more than 15 times its a DoS attack
             print("count: ", countIP)
-        # Some verbose shell output here
+        
         print("The Source of the IP is:", IP)
-        # Break out of the loop here if 15 consecutive hits
+        
         if (countIP >= 15 and IP != "127.0.0.1"):
-            # Disregard the Loopback address and test on 15 hits
+            
             break
 
     consecHit = 0
     for i in range(1, len(ipARrray)):
-        # Test here for consecutive IP hits, disregarding the Loop back address
+        #
         if(ipArray[i] == ipArray[i - 1]) and (ipARrray[i] != "127.0.0.1"):
             consecHit = consecHit + 1
 
             print("in here", ipARrray[i], end=" ")
-    # Write out logs to the text file
+    
     if consecHit > 10:
         line = "\n\n15 His exceeded: ", "\n", "IP Adreess: ", IP, "\n", "At time: ", t1, "\n"
         file_txt.writelines(line)
