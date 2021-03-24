@@ -10,7 +10,7 @@ def runSDoS():
     runSingleDoS()
 
 def runSocketGrab():
-    rundosDetect
+    dosDetect()
 
 Label(window, text=" Dos tool ",
       pady=5, font=('Helvetica', 15)).pack()
