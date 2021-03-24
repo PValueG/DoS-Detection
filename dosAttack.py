@@ -12,3 +12,5 @@ def runSingleDoS():
         send(pkt, inter=.001)
         print("packet sent ", i)
         i = i + 1
+        if i == 16:
+            break

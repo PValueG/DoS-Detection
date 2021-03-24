@@ -30,14 +30,14 @@ def dosDetect():
         
         print("The Source of the IP is:", IP)
         
-        if (countIP >= 15 and IP != "127.0.0.1"):
+        if (countIP >= 15 and IP != "10.0.2.1"):
             
             break
 
     consecHit = 0
     for i in range(1, len(ipARrray)):
         #
-        if(ipArray[i] == ipArray[i - 1]) and (ipARrray[i] != "127.0.0.1"):
+        if(ipArray[i] == ipArray[i - 1]) and (ipARrray[i] != "10.0.2.1"):
             consecHit = consecHit + 1
 
             print("in here", ipARrray[i], end=" ")
