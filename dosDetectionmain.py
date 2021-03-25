@@ -1,7 +1,8 @@
 from scapy.all import *
 import socket
 import struct
-    
+import datetime
+
 def dosDetect():
 # This will open up the socket libaries to access the packets
     s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, 8)
@@ -28,7 +29,7 @@ def dosDetect():
             countIP = countIP + 1 #counts certain ips, if one of them is hit more than 15 times its a DoS attack
             print("count: ", countIP)
         
-        print("The Source of the IP is:", IP)
+        print("IP source = :", IP)
         
         if (countIP >= 15 and IP != "10.0.2.1"):
             
@@ -43,7 +44,7 @@ def dosDetect():
             print("in here", ipARrray[i], end=" ")
     
     if consecHit > 10:
-        line = "\n\n15 His exceeded: ", "\n", "IP Adreess: ", IP, "\n", "At time: ", t1, "\n"
+        line = "\n\n15 ip hits: ", "\n", "IP Adreess: ", IP, "\n", "At time: ", t1, "\n"
         file_txt.writelines(line)
         line = "DDOS attack is Detected: \n"
         file_txt.writelines(line)
